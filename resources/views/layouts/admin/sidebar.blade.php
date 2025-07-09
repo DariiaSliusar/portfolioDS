@@ -7,13 +7,13 @@
             <div class="nav-list">
                 <ul>
                     <li>
-                        <a class="nav-active" href="dashboard.html">
+                        <a class="{{ (request()->is('admin/dashboard')) ? 'nav-active' : '' }}" href="{{ url('admin/dashboard') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a  href="about.html">
+                        <a class="{{ (request()->is('admin/abouts')) ? 'nav-active' : '' }}" href="{{ url('admin/abouts') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>About Me</span>
                         </a>
