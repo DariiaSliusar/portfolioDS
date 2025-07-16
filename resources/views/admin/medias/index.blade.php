@@ -11,6 +11,7 @@
                     <div class="titlebar">
                         <h1>Medias</h1>
                     </div>
+                    @includeIf('includes.flash_message')
                     <div class="card-wrappere">
                         <div class="card">
                             <h2>Social media</h2>
@@ -26,40 +27,19 @@
                                     <button class="service_table-icon">
                                         <i class="{{ $media->icon }}"></i>
                                     </button>
-                                    <button>
-                                        delete
-                                    </button>
+                                    <form method="POST" action="{{ route('medias.destroy', $media->id) }}">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <input type="hidden" name="id" value="{{ $media->id }}">
+                                        <button class="danger" type="submit" onclick="return confirm(&quot;Are you sure you want to delete this media?&quot;)">
+                                            delete
+                                        </button>
+                                    </form>
+
                                 </div>
-
                             @endforeach
-                            <div class="social_table-items">
-                                <p>https://www.facebook.com</p>
-                                <button class="service_table-icon">
-                                    <i class="uil uil-facebook-f"></i>
-                                </button>
-                                <button>
-                                    delete
-                                </button>
-                            </div>
-
                             <br>
-
-                            <div class="social_table-heading">
-                                <p>Link</p>
-                                <span style="color:#006fbb;">(Find your icon class: Font Awesome)</span>
-                                <p></p>
-                            </div>
-                            <p></p>
-                            <div class="social_table-items">
-
-                                <input type="text" />
-
-                                <input type="text" />
-                                <button>
-                                    Add Media
-                                </button>
-                            </div>
-
+                            @includeIf('admin.medias.form')
                         </div>
                     </div>
 
