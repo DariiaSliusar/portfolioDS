@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
@@ -33,6 +34,8 @@ Route::get('/admin/skills', [SkillController::class, 'index'])->name('admin.skil
 Route::post('/admin/skills', [SkillController::class, 'store'])->name('admin.skills.store');
 Route::patch('/admin/skills/{skill}', [SkillController::class, 'update'])->name('admin.skills.update');
 Route::delete('/admin/skills/{skill}', [SkillController::class, 'destroy'])->name('admin.skills.destroy');
+//education routes
+Route::get('/admin/educations', [EducationController::class, 'index'])->name('admin.educations.index');
 
 
 

@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="education.html">
+                        <a class="{{ (request()->is('admin/educations')) ? 'nav-active' : '' }}" href="{{ url('admin/educations') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>Educations</span>
                         </a>
