@@ -11,4 +11,9 @@ class Service extends Model
         'description',
         'icon',
     ];
+
+//    public function skills()
+//    {
+//        return $this->hasMany(Skill::class);
+//    }
 }

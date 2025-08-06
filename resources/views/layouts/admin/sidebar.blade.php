@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="skill.html">
+                        <a class="{{ (request()->is('admin/skills')) ? 'nav-active' : '' }}" href="{{ url('admin/skills') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>Skills</span>
                         </a>

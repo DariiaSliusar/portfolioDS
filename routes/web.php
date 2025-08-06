@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,11 @@ Route::post('/admin/services', [ServiceController::class, 'store'])->name('admin
 Route::get('/admin/services/{service}/edit', [ServiceController::class, 'edit'])->name('admin.services.edit');
 Route::patch('/admin/services/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 Route::delete('/admin/services/{service}', [ServiceController::class, 'destroy'])->name('admin.services.destroy');
+//skills routes
+Route::get('/admin/skills', [SkillController::class, 'index'])->name('admin.skills.index');
+Route::post('/admin/skills', [SkillController::class, 'store'])->name('admin.skills.store');
+Route::patch('/admin/skills/{skill}', [SkillController::class, 'update'])->name('admin.skills.update');
+Route::delete('/admin/skills/{skill}', [SkillController::class, 'destroy'])->name('admin.skills.destroy');
 
 
 
