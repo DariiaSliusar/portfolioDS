@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,14 @@ Route::patch('/admin/skills/{skill}', [SkillController::class, 'update'])->name(
 Route::delete('/admin/skills/{skill}', [SkillController::class, 'destroy'])->name('admin.skills.destroy');
 //education routes
 Route::get('/admin/educations', [EducationController::class, 'index'])->name('admin.educations.index');
+Route::post('/admin/educations', [EducationController::class, 'store'])->name('admin.educations.store');
+Route::patch('/admin/educations/{education}', [EducationController::class, 'update'])->name('admin.educations.update');
+Route::delete('/admin/educations/{education}', [EducationController::class, 'destroy'])->name('admin.educations.destroy');
+// experiences routes
+Route::get('/admin/experiences', [ExperienceController::class, 'index'])->name('admin.experiences.index');
+Route::post('/admin/experiences', [ExperienceController::class, 'store'])->name('admin.experiences.store');
+Route::patch('/admin/experiences/{experience}', [ExperienceController::class, 'update'])->name('admin.experiences.update');
+Route::delete('/admin/experiences/{experience}', [ExperienceController::class, 'destroy'])->name('admin.experiences.destroy');
 
 
 

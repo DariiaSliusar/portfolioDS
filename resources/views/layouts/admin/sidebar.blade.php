@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="experience.html">
+                        <a class="{{ (request()->is('admin/experiences')) ? 'nav-active' : '' }}" href="{{ url('admin/experiences') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>Experiences</span>
                         </a>
