@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 //            [ServiceSeeder::class],
 //            [SkillSeeder::class],
 //            [EducationSeeder::class],
+//            [ExperienceSeeder::class],
 //        );
 
         $this->call([
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             SkillSeeder::class,
             EducationSeeder::class,
+            ExperienceSeeder::class,
         ]);
 
 //        User::factory()->create([

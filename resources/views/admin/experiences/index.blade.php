@@ -6,6 +6,8 @@
             <h1>Experiences </h1>
             <button class="open-modal">New Experience</button>
         </div>
+        @includeIf('admin.experiences.create')
+        @includeIf('includes.flash_message')
         <div class="table">
             <div class="table-filter">
                 <div>
@@ -32,47 +34,26 @@
                 <p>Position</p>
                 <p>Actions</p>
             </div>
-            <!-- item 1 -->
-            <div class="experience_table-items">
-                <p>Backend Developer</p>
-                <p>Backend Developer</p>
-                <p>Backend Developer</p>
-                <div>
-                    <button class="btn-icon success">
-                        <i class="fas fa-pencil-alt"></i>
-                    </button>
-                    <button class="btn-icon danger" >
-                        <i class="far fa-trash-alt"></i>
-                    </button>
+            @foreach($experiences as $experience)
+                <div class="experience_table-items">
+                    <p>{{ $experience->company }}</p>
+                    <p>{{ $experience->period }}</p>
+                    <p>{{ $experience->position }}</p>
+                    <div>
+                        <button class="btn-icon success open-modal">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <form method="POST" action="{{ route('admin.experiences.destroy', $experience->id) }}" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn-icon danger" onClick="return confirm(&quot;Are you sure you want to delete this experience?&quot;);">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-
-        </div>
-
-        <!-------------- EXPERIENCE MODAL --------------->
-        <div class="modal" >
-            <div class="modal-content">
-                <h2>Create Experience</h2>
-                <span class="close-modal">×</span>
-                <hr>
-                <div>
-                    <p>Company</p>
-                    <input type="text" />
-
-                    <p>Period</p>
-                    <input type="text" />
-
-                    <p>Position</p>
-                    <input type="text" />
-                </div>
-                <hr>
-                <div class="modal-footer">
-                    <button class="close-modal">Cancel</button>
-                    <button class="secondary close-modal">
-                        <span><i class="fa fa-spinner fa-spin"></i></span>Save
-                    </button>
-                </div>
-            </div>
+            @includeIf('admin.experiences.edit')
+            @endforeach
         </div>
     </section>
 @endsection
