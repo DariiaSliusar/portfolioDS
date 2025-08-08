@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,8 @@ Route::post('/admin/projects/create', [ProjectController::class, 'store'])->name
 Route::get('/admin/projects/{project}/edit', [ProjectController::class, 'edit'])->name('admin.projects.edit');
 Route::patch('/admin/projects/{project}', [ProjectController::class, 'update'])->name('admin.projects.update');
 Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
+//testimonials routes
+Route::get('/admin/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
 
 
 

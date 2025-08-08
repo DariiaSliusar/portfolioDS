@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="testimonial.html">
+                        <a class="{{ (request()->is('admin/testimonials')) ? 'nav-active' : '' }}" href="{{ url('admin/testimonials') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>Testimonials</span>
                         </a>

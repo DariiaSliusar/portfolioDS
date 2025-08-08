@@ -44,7 +44,7 @@
                         @if($project->image)
                             <img src="{{ asset('storage/' . $project->image) }}" alt="" class="project_img-list">
                         @else
-                            <img src="{{ asset('template/assets/img/no-image.png') }}" alt="" class="project_img-list">
+                            <img src="{{ asset('../../template/assets/img/no-image.png') }}" alt="" class="project_img-list">
                         @endif
                     </p>
                     <p>{{ $project->title }}</p>
