@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\ExperienceController;
@@ -45,6 +46,15 @@ Route::get('/admin/experiences', [ExperienceController::class, 'index'])->name('
 Route::post('/admin/experiences', [ExperienceController::class, 'store'])->name('admin.experiences.store');
 Route::patch('/admin/experiences/{experience}', [ExperienceController::class, 'update'])->name('admin.experiences.update');
 Route::delete('/admin/experiences/{experience}', [ExperienceController::class, 'destroy'])->name('admin.experiences.destroy');
+//projects routes
+Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
+Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
+Route::post('/admin/projects/create', [ProjectController::class, 'store'])->name('admin.projects.store');
+Route::get('/admin/projects/{project}/edit', [ProjectController::class, 'edit'])->name('admin.projects.edit');
+Route::patch('/admin/projects/{project}', [ProjectController::class, 'update'])->name('admin.projects.update');
+Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
+
+
 
 
 
