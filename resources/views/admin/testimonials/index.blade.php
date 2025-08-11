@@ -4,8 +4,11 @@
     <section class="testimonials" id="projects">
         <div class="titlebar">
             <h1>Testimonials </h1>
-            <button class="btn__open--modal">New Testimonial</button>
+            <a href="{{ route('admin.testimonials.create') }}">
+                <button class="btn__open--modal">New Testimonial</button>
+            </a>
         </div>
+        @includeIf('includes.flash_message')
         <div class="table">
 
             <div class="table-filter">
@@ -50,12 +53,18 @@
                     <p>{{ $testimonial->testimony }}</p>
                     <p>{{ $testimonial->rating }}</p>
                     <div>
-                        <button class="btn-icon success">
-                            <i class="fas fa-pencil-alt"></i>
-                        </button>
-                        <button class="btn-icon danger" >
-                            <i class="far fa-trash-alt"></i>
-                        </button>
+                        <a href="{{ route('admin.testimonials.edit', $testimonial->id) }}" style="text-decoration: none">
+                            <button class="btn-icon success">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </a>
+                        <form id="{{ $testimonial->id }}" action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-icon danger" onclick="return confirm('Are you sure you want to delete this testimonial?');">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
            @endforeach

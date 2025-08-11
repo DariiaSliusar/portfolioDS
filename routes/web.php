@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
@@ -56,6 +57,13 @@ Route::patch('/admin/projects/{project}', [ProjectController::class, 'update'])-
 Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
 //testimonials routes
 Route::get('/admin/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
+Route::get('/admin/testimonials/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
+Route::post('/admin/testimonials/create', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
+Route::get('/admin/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('admin.testimonials.edit');
+Route::patch('/admin/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
+Route::delete('/admin/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
+// messages routes
+Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
 
 
 

@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="message.html">
+                        <a class="{{ (request()->is('admin/messages')) ? 'nav-active' : '' }}" href="{{ url('admin/messages') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>Messages</span>
                         </a>
