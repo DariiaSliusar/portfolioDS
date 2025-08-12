@@ -70,6 +70,7 @@ Route::patch('/admin/messages/{message}', [MessageController::class, 'updateStat
 Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy'])->name('admin.messages.destroy');
 //users routes
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
 
 
 

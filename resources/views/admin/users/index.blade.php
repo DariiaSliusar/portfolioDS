@@ -6,6 +6,8 @@
             <h1>Users </h1>
             <button class="open-modal">New User</button>
         </div>
+        @includeIf('admin.users.create')
+        @includeIf('includes.flash_message')
         <div class="table">
 
             <div class="table-filter">
@@ -31,26 +33,31 @@
             <div class="user_table-heading">
                 <p>Photo</p>
                 <p>Name</p>
-                <p>Role</p>
+                <p>Email</p>
                 <p>Actions</p>
             </div>
-            <!-- item 1 -->
-            <div class="user_table-items">
-                <p>
-                    <img src="../assets/img/avatar.jpg" alt="" class="user_img-list">
-                </p>
-                <p>Backend Developer</p>
-                <p>Backend Developer</p>
-                <div>
-                    <button class="btn success">
-                        <i class="fas fa-pencil-alt"></i>
-                    </button>
-                    <button class="btn danger" >
-                        <i class="far fa-trash-alt"></i>
-                    </button>
-                </div>
-            </div>
+            @foreach($users as $user)
+                <div class="user_table-items">
+                    <p>
+                        @if($user->image)
+                            <img src="{{ asset('images/' . $user->image) }}" alt="" class="user_img-list">
+                        @else
+                            <img src="{{ asset('template/assets/img/avatar.jpg') }}" alt="" class="user_img-list">
+                        @endif
 
+                    </p>
+                    <p>{{ $user->name }}</p>
+                    <p>{{ $user->email }}</p>
+                    <div>
+                        <button class="btn success">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn danger" >
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </section>
 @endsection
