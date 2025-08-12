@@ -61,7 +61,7 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="user.html">
+                        <a class="{{ (request()->is('admin/users')) ? 'nav-active' : '' }}" href="{{ url('admin/users') }}">
                             <span><i class="fas fa-home"> </i></span>
                             <span>Users</span>
                         </a>

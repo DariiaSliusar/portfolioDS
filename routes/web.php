@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -64,7 +65,11 @@ Route::patch('/admin/testimonials/{testimonial}', [TestimonialController::class,
 Route::delete('/admin/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 // messages routes
 Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
-
+Route::get('/admin/messages/{message}', [MessageController::class, 'edit'])->name('admin.messages.edit');
+Route::patch('/admin/messages/{message}', [MessageController::class, 'updateStatus'])->name('admin.messages.update_status');
+Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy'])->name('admin.messages.destroy');
+//users routes
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
 
 

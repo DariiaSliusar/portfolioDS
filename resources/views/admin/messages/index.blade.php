@@ -6,7 +6,7 @@
             <div class="titlebar">
                 <h1>Messages </h1>
             </div>
-
+            @includeIf('includes.flash_message')
             <div class="table">
 
                 <div class="table-filter">
@@ -39,7 +39,11 @@
                 </div>
                 @foreach($messages as $message)
                 <div class="message_table-items">
-                    <p>{{ $message->name }}</p>
+                    <p>
+                        <a href="{{ route('admin.messages.edit', $message->id) }}" style="text-decoration:none;color:blue;">
+                            {{ $message->name }}
+                        </a>
+                    </p>
                     <p>{{ $message->email }}</p>
                     <p>{{ $message->subject }}</p>
                     <p>{{ $message->description }}</p>
@@ -47,17 +51,23 @@
                         @if ($message->status == "1")
                             <span class="badge_read">
                                 Read
+                                <input id="status" class="hidden" type="radio" name="status" value="1" {{ (isset($message) && 1 == $message->status) ? 'checked' : '' }}>
                             </span>
                         @else
                             <span class="badge_unread">
                                 Unread
+                                <input id="status" class="hidden" type="radio" name="status" value="1" {{ (isset($message) && 1 == $message->status) ? 'checked' : '' }}>
                             </span>
                         @endif
                     </p>
                     <div>
-                        <button class="btn danger">
-                            <i class="far fa-trash-alt"></i>
-                        </button>
+                        <form action="{{ route('admin.messages.destroy', $message->id) }}" id="{{ $message->id }}" method="POST" >
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn danger" onClick="return confirm('Are you sure you want to delete this message?');">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 @endforeach
