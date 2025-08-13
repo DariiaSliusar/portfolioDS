@@ -14,7 +14,8 @@
                     </li>
                     <li>
                         <a class="{{ (request()->is('admin/abouts')) ? 'nav-active' : '' }}" href="{{ url('admin/abouts') }}">
-                            <span><i class="fas fa-home"> </i></span>
+
+                            <span><i class="fas fa-user-tie"></i></span>
                             <span>About Me</span>
                         </a>
                     </li>

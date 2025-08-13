@@ -1,93 +1,123 @@
 @extends('layouts.admin.base')
 
 @section('content')
-    <!-- Overview Page -->
     <section class="overview" id="overview">
         <div class="overview_left">
             <div class="titlebar">
                 <h1 style="padding-left: 10px;">Overview Dashboard</h1>
             </div>
-
             <!-- TOP CARDS -->
             <div class="overview_cards ">
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Skills</p>
-                        <span>16</span>
+                        @if ($skillCount > 0)
+                            <span>{{ $skillCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Skills</a>
+                        <a href="{{ url('admin/skills') }}">View Skills</a>
                     </div>
                 </div>
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Educations</p>
-                        <span>16</span>
+                        @if ($educationCount > 0)
+                            <span>{{ $educationCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Educations</a>
+                        <a href="{{ url('admin/educations') }}">View Educations</a>
                     </div>
                 </div>
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Experience</p>
-                        <span>16</span>
+                        @if ($experienceCount > 0)
+                            <span>{{ $experienceCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Experiences</a>
+                        <a href="{{ url('admin/experiences') }}">View Experiences</a>
                     </div>
                 </div>
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Services</p>
-                        <span>16</span>
+                        @if ($servicesCount > 0)
+                            <span>{{ $servicesCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Services</a>
+                        <a href="{{ url('admin/services') }}">View Services</a>
                     </div>
                 </div>
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Projects</p>
-                        <span>9</span>
+                        @if ($projectsCount > 0)
+                            <span>{{ $projectsCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Projects</a>
+                        <a href="{{ url('admin/projects') }}">View Projects</a>
                     </div>
                 </div>
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Testimonials</p>
-                        <span>9</span>
+                        @if ($testimonialsCount > 0)
+                            <span>{{ $testimonialsCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Testimonials</a>
+                        <a href="{{ url('admin/testimonials') }}">View Testimonials</a>
                     </div>
                 </div>
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Messages</p>
-                        <span>9</span>
+                        @if ($messageCount > 0)
+                            <span>{{ $messageCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Messages</a>
+                        <a href="{{ url('admin/messages') }}">View Messages</a>
                     </div>
                 </div>
                 <div class="overview_cards-item card">
                     <div class="overview_data">
                         <p>Users</p>
-                        <span>9</span>
+                        @if ($messageCount > 0)
+                            <span>{{ $messageCount }}</span>
+                        @else
+                            <span>0</span>
+                        @endif
                     </div>
                     <div class="overview_link">
                         <span></span>
-                        <a href="#">View Users</a>
+                        <a href="{{ url('admin/users') }}">View Users</a>
                     </div>
                 </div>
 
@@ -102,28 +132,14 @@
                     <div class="table ui-card">
                         <div class="overview_table-header">
                             <p>Image</p>
-                            <p>Product</p>
+                            <p>Project</p>
                         </div>
-                        <div class="overview_table-items" >
-                            <img src="..//assets/img/no-image.png" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="../assets/img/no-image.png" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="../assets/img/no-image.png" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="../assets/img/no-image.png" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="../assets/img/no-image.png" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
+                        @foreach ($projects as $project)
+                            <div class="overview_table-items">
+                                <img src="{{ asset('images/' . $project->image) }}" />
+                                <a>{{ $project->title }}</a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
                 <div>
@@ -135,32 +151,18 @@
                             <p>Image</p>
                             <p>Testimonial</p>
                         </div>
-                        <div class="overview_table-items" >
-                            <img src="../assets/img/avatar.jpg" style="height:60px;width:60px;" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="..assets/img/avatar.jpg" style="height:60px;width:60px;" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="..assets/img/avatar.jpg" style="height:60px;width:60px;" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="..assets/img/avatar.jpg" style="height:60px;width:60px;" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
-                        <div class="overview_table-items" >
-                            <img src="..assets/img/avatar.jpg" style="height:60px;width:60px;" />
-                            <a>Product item.name item.name item.name</a>
-                        </div>
+                        @foreach($testimonials as $testimonial)
+                            <div class="overview_table-items" >
+                                <img src="{{ asset('images/' . $testimonial->image) }}" />
+                                <a>{{ $testimonial->name }}</a>
+                                <p>{{ Str::limit($testimonial->testimony, 40) }}</p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-
-
         </div>
+
         <div class="overview_right">
             <div class="overview_analyse ui-card">
                 <canvas id="myChart"></canvas>
@@ -169,124 +171,76 @@
                 <h1>Skills</h1>
             </div>
             <div class="overview_skills">
-                <div class="overview_skills-title">
-                    <h2>Frontend developer</h2>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">HTML</h3>
-                        <span class="skills_number">90%</span>
+                @foreach($services as $service)
+                    <div class="overview_skills-title">
+                        <h2>{{ $service->title }}</h2>
                     </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_html"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">CSS</h3>
-                        <span class="skills_number">80%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_css"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">JavaScript</h3>
-                        <span class="skills_number">75%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_js"></span>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="overview_skills">
-                <div class="overview_skills-title">
-                    <h2>Backend developer</h2>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">PHP</h3>
-                        <span class="skills_number">90%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_html"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">Node Js</h3>
-                        <span class="skills_number">80%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_css"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">Python</h3>
-                        <span class="skills_number">75%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_js"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">Ruby</h3>
-                        <span class="skills_number">75%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_js"></span>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="overview_skills">
-                <div class="overview_skills-title">
-                    <h2>Designer</h2>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">Figma</h3>
-                        <span class="skills_number">90%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_html"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">Sketch</h3>
-                        <span class="skills_number">80%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_css"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">Adobe XD</h3>
-                        <span class="skills_number">75%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_js"></span>
-                    </div>
-                </div>
-                <div class="skills_data">
-                    <div class="skills_titles">
-                        <h3 class="skills_name">Photoshop</h3>
-                        <span class="skills_number">75%</span>
-                    </div>
-                    <div class="skills_bar">
-                        <span class="skills_percentage skills_js"></span>
-                    </div>
-                </div>
+                    @foreach($service->skills as $skill)
+                            <div class="skills_data">
+                                <div class="skills_titles">
+                                    <h3 class="skills_name">{{ $skill->name }}</h3>
+                                    <span class="skills_number">{{ $skill->proficiency }}%</span>
+                                </div>
+                                <div class="skills_bar">
+                                    <span class="skills_percentage" style="width: {{$skill->proficiency}}%"></span>
+                                </div>
+                            </div>
+                    @endforeach
+                    <br><br>
+                @endforeach
             </div>
         </div>
-
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        function dynamicColors() {
+           var r = Math.floor(Math.random() * 255);
+           var g = Math.floor(Math.random() * 255);
+           var b = Math.floor(Math.random() * 255);
+           return 'rgb(' + r + ',' + g + ',' + b + ', 0.5)';
+        }
+
+        function poolColors(a) {
+            var pool = [];
+            for(i=0; i < a; i++) {
+                for(i=0; i < a; i++) {
+                    pool.push(dynamicColors());
+                }
+                return pool;
+            }
+        }
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    @foreach($skills as $skill)
+                        '{{ $skill->name }}',
+                    @endforeach
+                ],
+                datasets: [{
+                    label: '# of Skills(%)',
+                    backgroundColor: poolColors({{ $skillCount }}),
+                    borderColor: poolColors({{ $skillCount }}),
+                    data: [
+                        @foreach($skills as $skill)
+                            {{ $skill->proficiency }},
+                        @endforeach
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 @endsection
 
