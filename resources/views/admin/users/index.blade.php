@@ -49,14 +49,20 @@
                     <p>{{ $user->name }}</p>
                     <p>{{ $user->email }}</p>
                     <div>
-                        <button class="btn success">
+                        <button class="btn success open-modal" >
                             <i class="fas fa-pencil-alt"></i>
                         </button>
-                        <button class="btn danger" >
-                            <i class="far fa-trash-alt"></i>
-                        </button>
+                        <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display: inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn danger" onClick="return confirm('Are you sure you want to delete this user?');">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+
                     </div>
                 </div>
+                @includeIf('admin.users.edit')
             @endforeach
         </div>
     </section>

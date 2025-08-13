@@ -33,4 +33,33 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('flash_message', 'User created successfully.');
     }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::query()->find($id);
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'password' => 'required|min:8',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->bio = $request->bio;
+        if($request->password != ""){
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('flash_message', 'User updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::query()->find($id);
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('flash_message', 'User deleted successfully.');
+    }
 }
