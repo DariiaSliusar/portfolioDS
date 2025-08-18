@@ -4,8 +4,22 @@
             <li><img src="../assets/img/logo.png" alt=""></li>
         </ul>
         <ul class="header-profile">
-            <li class="avatar-item"><img src="../assets/img/avatar.jpg" alt="" class="avatar-img"></li>
-            <li><span>team2devs.com</span></li>
+            @if (Auth::user())
+                <li class="avatar-item">
+                    @if(Auth::user()->image)
+                        <img src="{{ asset('images/' . Auth::user()->image) }}" alt="" class="avatar-img">
+                    @else
+                        <img src="{{ asset('template/assets/img/avatar.jpg') }}" alt="" class="avatar-img">
+                    @endif
+                </li>
+                <li>
+                    @if(Auth::user()->email)
+                        <span>{{ Auth::user()->email }}</span>
+                    @else
+                        <span>dariiasliusar.com</span>
+                    @endif
+                </li>
+            @endif
         </ul>
     </nav>
     <span class="header-profile-nav">
@@ -15,7 +29,15 @@
                 <hr class="hr">
                 <li><a href="#">Message</a></li>
                 <hr class="hr">
-                <li><a href="login.html">Logout</a></li>
+                <li>
+                    <a href="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                        <span onclick="event.preventDefault(); this.closest('form').submit();">
+                            Logout
+                        </span>
+                    </a>
+                </li>
             </ul>
         </span>
 </header>
