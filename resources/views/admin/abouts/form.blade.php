@@ -24,7 +24,7 @@
                 name="email"
                 value="{{ isset($about->email) ? $about->email : '' }}"
             />
-            {!! $errors->first('name','<p class="alert">:message</p>') !!}
+            {!! $errors->first('email','<p class="alert">:message</p>') !!}
 
             <label>Phone</label>
             <input
@@ -42,7 +42,6 @@
 
             <label>Description</label>
             <textarea
-                type="text"
                 cols="10"
                 rows="3"
                 name="description"
@@ -52,7 +51,6 @@
 
             <label>Summary</label>
             <textarea
-                type="text"
                 cols="10"
                 rows="2"
                 name="summary"

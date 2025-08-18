@@ -23,21 +23,22 @@
         </ul>
     </nav>
     <span class="header-profile-nav">
-            <span> <i class="fa fa-sort-up"></i></span>
-            <ul>
-                <li><a href="profile.html">Profile</a></li>
-                <hr class="hr">
-                <li><a href="#">Message</a></li>
-                <hr class="hr">
-                <li>
-                    <a href="{{ route('logout') }}">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+        <span> <i class="fa fa-sort-up"></i></span>
+        <ul>
+            <li><a href="profile.html">Profile</a></li>
+            <hr class="hr">
+            <li><a href="#">Message</a></li>
+            <hr class="hr">
+            <li>
+                <a href="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
                         <span onclick="event.preventDefault(); this.closest('form').submit();">
                             Logout
                         </span>
-                    </a>
-                </li>
-            </ul>
-        </span>
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </span>
 </header>
