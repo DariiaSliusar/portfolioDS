@@ -14,10 +14,10 @@
                 </div>
 
                 <div class="home_data">
-                    <h1 class="home_title">Hi, I'am John Doe</h1>
-                    <h3 class="home_subtitle">FullStack Web developer</h3>
+                    <h1 class="home_title" style="font-size: 2.5rem;">Hi, I'am {{ $about->name }}</h1>
+                    <h3 class="home_subtitle">{{ $about->tagline }}</h3>
                     <p class="home_description">
-                        High level experience in web design,fornt-en and backend development, producing quality work.
+                        {{ $about->summary }}
                     </p>
                     <a href="#contact" class="button button--flex">
                         Contact Me <i class="uil uil-message button__icon"></i>
@@ -31,15 +31,11 @@
                     <div class="home_social">
                         <span class="home_social-follow">Follow Me</span>
                         <div class="home_social-links">
-                            <a href="https://www.linkedin.com" target="_blank" class="home_social-icon">
-                                <i class="uil uil-linkedin-alt"></i>
-                            </a>
-                            <a href="https://www.dribbble.com" target="_blank" class="home_social-icon">
-                                <i class="uil uil-dribbble"></i>
-                            </a>
-                            <a href="https://www.github.com" target="_blank" class="home_social-icon">
-                                <i class="uil uil-github-alt"></i>
-                            </a>
+                            @foreach($mediasHome as $media)
+                                <a href="{{ $media->link }}" target="_blank" class="home_social-icon">
+                                    <i class="{{ $media->icon }}"></i>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
 
@@ -52,15 +48,11 @@
                         </div>
                         <div class="home_social1">
                             <div class="home_social-link">
-                                <a href="https://www.linkedin.com" target="_blank" class="home_social-icon">
-                                    <i class="uil uil-linkedin-alt"></i>
-                                </a>
-                                <a href="https://www.dribbble.com" target="_blank" class="home_social-icon">
-                                    <i class="uil uil-dribbble"></i>
-                                </a>
-                                <a href="https://www.github.com" target="_blank" class="home_social-icon">
-                                    <i class="uil uil-github-alt"></i>
-                                </a>
+                                @foreach($mediasHome as $media)
+                                    <a href="{{ $media->link }}" target="_blank" class="home_social-icon">
+                                        <i class="{{ $media->icon }}"></i>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -75,7 +67,13 @@
         <span class="section__subtitle">My introduction</span>
 
         <div class="about_container container grid">
-            <img src="../assets/img/about-img.png" alt="" class="about_img">
+            @foreach($abouts as $about)
+                @if($about->banner_image)
+                    <img src="{{ asset('images/' . $about->banner_image) }}" alt="" class="about_img">
+                @else
+                    <img src="{{ asset('template/assets/img/about-img.png') }}" alt="" class="about_img">
+                @endif
+            @endforeach
 
             <div class="about_data">
                 <p class="about_description">
@@ -88,18 +86,26 @@
                         <span class="about_info-name">Years <br>experience</span>
                     </div>
                     <div>
-                        <span class="about_info-title">25+</span>
+                        <span class="about_info-title">{{ $projectsCount }}+</span>
                         <span class="about_info-name">Completed <br>project</span>
                     </div>
                     <div>
-                        <span class="about_info-title">04+</span>
+                        <span class="about_info-title">{{  $experiencesCount }}+</span>
                         <span class="about_info-name">Companies <br>worked</span>
                     </div>
                 </div>
                 <div class="about_buttons">
-                    <a href="../assets/pdf/johndoe-Cv.pdf" class="button button--flex">
-                        Download CV <i class="uil uil-download-alt button_icon"></i>
-                    </a>
+                    @foreach($abouts as $about)
+                        @if ($about->cv)
+                            <a href="{{ asset('pdf/' . $about->cv) }}" class="button button--flex" download>
+                                Download CV <i class="uil uil-download-alt button_icon"></i>
+                            </a>
+                        @else
+                            <a href="{{ asset('template/assets/pdf/johndoe-Cv.pdf') }}" class="button button--flex">
+                                Download CV <i class="uil uil-download-alt button_icon"></i>
+                            </a>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -111,154 +117,35 @@
         <span class="section__subtitle">My technical lever</span>
 
         <div class="skills_container container grid">
-            <div>
-                <!--=========== SKILL 1 ============-->
-                <div class="skills_content skills_open">
-                    <div class="skills_header">
-                        <i class="uil uil-brackets-curly skills_icon"></i>
+            @foreach($services as $service)
+                <div>
+                    <div class="skills_content skills_open">
+                        <div class="skills_header">
+                            <i class="uil uil-brackets-curly skills_icon"></i>
 
-                        <div>
-                            <h1 class="skills_title">Frontend developer</h1>
-                            <span class="skills_subtitle">More than 4 years</span>
-                        </div>
+                            <div>
+                                <h1 class="skills_title">{{ $service->title }}</h1>
+                                <span class="skills_subtitle">More than 4 years</span>
+                            </div>
 
-                        <i class="uil uil-angle-down skills_arrow"></i>
-                    </div>
-                    <div class="skills_list grid">
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">HTML</h3>
-                                <span class="skills_number">90%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_html"></span>
-                            </div>
+                            <i class="uil uil-angle-down skills_arrow"></i>
                         </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">CSS</h3>
-                                <span class="skills_number">80%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_css"></span>
-                            </div>
-                        </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">JavaScript</h3>
-                                <span class="skills_number">60%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_javascript"></span>
-                            </div>
+                        <div class="skills_list grid">
+                            @foreach($service->skills as $skill)
+                                <div class="skills_data">
+                                    <div class="skills_titles">
+                                        <h3 class="skills_name">{{ $skill->name }}</h3>
+                                        <span class="skills_number">{{ $skill->proficiency }}%</span>
+                                    </div>
+                                    <div class="skills_bar">
+                                        <span class="skills_percentage" style="width:{{ $skill->proficiency }}"></span>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-                <!--=========== SKILL 2 ============-->
-                <div class="skills_content skills_open">
-                    <div class="skills_header">
-                        <i class="uil uil-server-network skills_icon"></i>
-
-                        <div>
-                            <h1 class="skills_title">Backend developer</h1>
-                            <span class="skills_subtitle">More than 7 years</span>
-                        </div>
-
-                        <i class="uil uil-angle-down skills_arrow"></i>
-                    </div>
-                    <div class="skills_list grid">
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">PHP</h3>
-                                <span class="skills_number">80%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_php"></span>
-                            </div>
-                        </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">Node J6</h3>
-                                <span class="skills_number">80%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_nodejs"></span>
-                            </div>
-                        </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">Python</h3>
-                                <span class="skills_number">60%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_python"></span>
-                            </div>
-                        </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">Ruby</h3>
-                                <span class="skills_number">55%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_ruby"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <!--=========== SKILL 3 ============-->
-                <div class="skills_content skills_open">
-                    <div class="skills_header">
-                        <i class="uil uil-server-network skills_icon"></i>
-
-                        <div>
-                            <h1 class="skills_title">Designer</h1>
-                            <span class="skills_subtitle">More than 5 years</span>
-                        </div>
-
-                        <i class="uil uil-angle-down skills_arrow"></i>
-                    </div>
-                    <div class="skills_list grid">
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">Figma</h3>
-                                <span class="skills_number">90%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_figma"></span>
-                            </div>
-                        </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">Sketch</h3>
-                                <span class="skills_number">85%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_sketch"></span>
-                            </div>
-                        </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">Adobe XD</h3>
-                                <span class="skills_number">80%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_adobexd"></span>
-                            </div>
-                        </div>
-                        <div class="skills_data">
-                            <div class="skills_titles">
-                                <h3 class="skills_name">Photoshop</h3>
-                                <span class="skills_number">85%</span>
-                            </div>
-                            <div class="skills_bar">
-                                <span class="skills_percentage skills_photoshop"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 
@@ -282,127 +169,45 @@
             <div class="qualification_sections">
                 <!--========== QUALIFICATION CONTENT 1 ==========-->
                 <div class="qualification_content qualification_active" data-content id="education">
-                    <!--============= QUALIFICATION 1 ===========-->
-                    <div class="qualification_data">
-                        <div>
-                            <h3 class="qualification_title">Computer Science</h3>
-                            <span class="qualification_subtitle">Germany-University</span>
-                            <div class="qualificaation_calender">
-                                <i class="uil uil-calender-alt"></i>
-                                2009 - 2014
+                    @foreach($educations as $education)
+                        @if($loop->iteration % 2)
+                            <div class="qualification_data">
+                                <div>
+                                    <h3 class="qualification_title">{{ $education->department }}</h3>
+                                    <span class="qualification_subtitle">{{ $education->institution }}</span>
+                                    <div class="qualificaation_calender">
+                                        <i class="uil uil-calender-alt"></i>
+                                        {{ $education->period }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="qualification_rounder"></span>
+                                    <span class="qualification_line"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <span class="qualification_rounder"></span>
-                            <span class="qualification_line"></span>
-                        </div>
-                    </div>
-                    <!--============= QUALIFICATION 2 ===========-->
-                    <div class="qualification_data">
-                        <div></div>
-
-                        <div>
-                            <span class="qualification_rounder"></span>
-                            <span class="qualification_line"></span>
-                        </div>
-
-                        <div>
-                            <h3 class="qualification_title">Web Design</h3>
-                            <span class="qualification_subtitle">Germany-Institute</span>
-                            <div class="qualificaation_calender">
-                                <i class="uil uil-calender-alt"></i>
-                                2014 - 2017
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--============= QUALIFICATION 3 ===========-->
-                    <div class="qualification_data">
-                        <div>
-                            <h3 class="qualification_title">Web Development</h3>
-                            <span class="qualification_subtitle">Germany-Institute</span>
-                            <div class="qualificaation_calender">
-                                <i class="uil uil-calender-alt"></i>
-                                2017 - 2019
-                            </div>
-                        </div>
-                        <div>
-                            <span class="qualification_rounder"></span>
-                            <span class="qualification_line"></span>
-                        </div>
-                    </div>
-                    <!--============= QUALIFICATION 4 ===========-->
-                    <div class="qualification_data">
-                        <div></div>
-
-                        <div>
-                            <span class="qualification_rounder"></span>
-                            <!--<span class="qualification_line"></span>-->
-                        </div>
-
-                        <div>
-                            <h3 class="qualification_title">Master in UI/UX</h3>
-                            <span class="qualification_subtitle">Germany-Institute</span>
-                            <div class="qualificaation_calender">
-                                <i class="uil uil-calender-alt"></i>
-                                2019 - 2021
-                            </div>
-                        </div>
-
-                    </div>
+                        @endif
+                    @endforeach
                 </div>
                 <!--========== QUALIFICATION CONTENT 2 ==========-->
                 <div class="qualification_content" data-content id="work">
-                    <!--============= QUALIFICATION 1 ===========-->
-                    <div class="qualification_data">
-                        <div>
-                            <h3 class="qualification_title">Software Enginner</h3>
-                            <span class="qualification_subtitle">Apple Inc - Germany</span>
-                            <div class="qualificaation_calender">
-                                <i class="uil uil-calender-alt"></i>
-                                2016 - 2018
+                    @foreach($experiences as $experience)
+                        @if($loop->iteration % 2)
+                            <div class="qualification_data">
+                                <div>
+                                    <h3 class="qualification_title">{{ $experience->position }}</h3>
+                                    <span class="qualification_subtitle">{{ $experience->company }}</span>
+                                    <div class="qualificaation_calender">
+                                        <i class="uil uil-calender-alt"></i>
+                                        {{ $experience->position }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="qualification_rounder"></span>
+                                    <span class="qualification_line"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <span class="qualification_rounder"></span>
-                            <span class="qualification_line"></span>
-                        </div>
-                    </div>
-                    <!--============= QUALIFICATION 2 ===========-->
-                    <div class="qualification_data">
-                        <div></div>
-
-                        <div>
-                            <span class="qualification_rounder"></span>
-                            <span class="qualification_line"></span>
-                        </div>
-
-                        <div>
-                            <h3 class="qualification_title">Frontend Developer</h3>
-                            <span class="qualification_subtitle">Apple Inc - Germany</span>
-                            <div class="qualificaation_calender">
-                                <i class="uil uil-calender-alt"></i>
-                                2018 - 2020
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--============= QUALIFICATION 3 ===========-->
-                    <div class="qualification_data">
-                        <div>
-                            <h3 class="qualification_title">Ui Designer</h3>
-                            <span class="qualification_subtitle">Figma - Germany</span>
-                            <div class="qualificaation_calender">
-                                <i class="uil uil-calender-alt"></i>
-                                2017 - 2019
-                            </div>
-                        </div>
-                        <div>
-                            <span class="qualification_rounder"></span>
-                            <!--<span class="qualification_line"></span>-->
-                        </div>
-                    </div>
-
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -414,154 +219,32 @@
         <span class="section__subtitle">What is offer</span>
 
         <div class="services_container container grid">
-            <!--============== SERVICES 1 =============-->
-            <div class="services_content">
-                <div>
-                    <i class="uil uil-web-grid services_icon"></i>
-                    <h3 class="services_title">Ui/Ux <br> Designer</h3>
-                </div>
-                <span class="button button--flex button--small button--link services_button">
+            @foreach($services as $service)
+                <div class="services_content">
+                    <div>
+                        <i class="uil uil-web-grid services_icon"></i>
+                        <h3 class="services_title">{{ $service->title }}</h3>
+                    </div>
+                    <span class="button button--flex button--small button--link services_button">
                         View More
                         <i class="uil uil-arrow-right button_icon"></i>
                     </span>
 
-                <div class="services_modal ">
-                    <div class="services_modal-content">
-                        <h4 class="services_modal-title">UI/UX <br> Designer</h4>
-                        <i class="uil uil-times services_modal-close"></i>
+                    <div class="services_modal ">
+                        <div class="services_modal-content">
+                            <h4 class="services_modal-title">{{ $service->title }}</h4>
+                            <i class="uil uil-times services_modal-close"></i>
 
-                        <ul class="services_modal-services grid">
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I develop the user interface</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>Web page development</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I create ux element interactions</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I position your company brand.</p>
-                            </li>
-                        </ul>
+                            <ul class="services_modal-services grid">
+                                <li class="services_modal-service">
+                                    <i class="uil uil-check-circle services_modal-icon"></i>
+                                    <p>{{ $service->description }}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--============== SERVICES 2 =============-->
-            <div class="services_content">
-                <div>
-                    <i class="uil uil-web-grid services_icon"></i>
-                    <h3 class="services_title">Frontend <br> Developer</h3>
-                </div>
-                <span class="button button--flex button--small button--link services_button">
-                        View More
-                        <i class="uil uil-arrow-right button_icon"></i>
-                    </span>
-
-                <div class="services_modal">
-                    <div class="services_modal-content">
-                        <h4 class="services_modal-title">Frontend <br> Developer</h4>
-                        <i class="uil uil-times services_modal-close"></i>
-
-                        <ul class="services_modal-services grid">
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I develop the user interface</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>Web page development</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I create ux element interactions</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I position your company brand.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--============== SERVICES 3 =============-->
-            <div class="services_content">
-                <div>
-                    <i class="uil uil-web-grid services_icon"></i>
-                    <h3 class="services_title">Backend <br> Developer</h3>
-                </div>
-                <span class="button button--flex button--small button--link services_button">
-                        View More
-                        <i class="uil uil-arrow-right button_icon"></i>
-                    </span>
-
-                <div class="services_modal">
-                    <div class="services_modal-content">
-                        <h4 class="services_modal-title">Backend <br> Developer</h4>
-                        <i class="uil uil-times services_modal-close"></i>
-
-                        <ul class="services_modal-services grid">
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I develop the user interface</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>Web page development</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I create ux element interactions</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I position your company brand.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--============== SERVICES 4 =============-->
-            <div class="services_content">
-                <div>
-                    <i class="uil uil-web-grid services_icon"></i>
-                    <h3 class="services_title">Branding <br> Designer</h3>
-                </div>
-                <span class="button button--flex button--small button--link services_button">
-                        View More
-                        <i class="uil uil-arrow-right button_icon"></i>
-                    </span>
-
-                <div class="services_modal">
-                    <div class="services_modal-content">
-                        <h4 class="services_modal-title">Branding <br> Designer</h4>
-                        <i class="uil uil-times services_modal-close"></i>
-
-                        <ul class="services_modal-services grid">
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I develop the user interface</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>Web page development</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I create ux element interactions</p>
-                            </li>
-                            <li class="services_modal-service">
-                                <i class="uil uil-check-circle services_modal-icon"></i>
-                                <p>I position your company brand.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 
@@ -572,53 +255,26 @@
 
         <div class="portfolio_container container swiper-container">
             <div class="swiper-wrapper">
-                <!--============ PORTFOLIO 1 ==============-->
-                <div class="portfolio_content grid swiper-slide">
-                    <img src="../assets/img/portfolio1.jpeg" alt="" class="portfolio_img">
+                @foreach($projects as $project)
+                    <div class="portfolio_content grid swiper-slide">
+                        @if($project->image)
+                            <img src="{{ asset('images/' . $project->image) }}" alt="" class="portfolio_img">
+                        @else
+                        <img src="{{ asset('template/assets/img/portfolio1.jpeg') }}" alt="" class="portfolio_img">
+                        @endif
 
-                    <div class="portfolio_data">
-                        <h3 class="portfolio_title">Modern Website</h3>
-                        <p class="portfolio_description">
-                            Website adaptable to all devices,with ui description
-                            and animated interactions.
-                        </p>
-                        <a href="#" class="button button--flex button--small portfolio_button">
-                            Demo
-                            <i class="uil uil-arrow-right button__icon"></i>
-                        </a>
+                        <div class="portfolio_data">
+                            <h3 class="portfolio_title">{{ $project->title }}</h3>
+                            <p class="portfolio_description">
+                               {{ $project->description }}
+                            </p>
+                            <a href="{{ $project->link }}" class="button button--flex button--small portfolio_button">
+                                Demo
+                                <i class="uil uil-arrow-right button__icon"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <!--============ PORTFOLIO 2 ==============-->
-                <div class="portfolio_content grid swiper-slide">
-                    <img src="../assets/img/portfolio2.jpeg" alt="" class="portfolio_img">
-
-                    <div class="portfolio_data">
-                        <h3 class="portfolio_title">POS App</h3>
-                        <p class="portfolio_description">
-                            POS App description
-                        </p>
-                        <a href="#" class="button button--flex button--small portfolio_button">
-                            Demo
-                            <i class="uil uil-arrow-right button__icon"></i>
-                        </a>
-                    </div>
-                </div>
-                <!--============ PORTFOLIO 3 ==============-->
-                <div class="portfolio_content grid swiper-slide">
-                    <img src="../assets/img/portfolio3.jpeg" alt="" class="portfolio_img">
-
-                    <div class="portfolio_data">
-                        <h3 class="portfolio_title">Online Store</h3>
-                        <p class="portfolio_description">
-                            Website adaptable to all devices,with ui description
-                            and animated interactions.
-                        </p>
-                        <a href="#" class="button button--flex button--small portfolio_button">
-                            Demo
-                            <i class="uil uil-arrow-right button__icon"></i>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!--Add Arrow-->
@@ -645,8 +301,14 @@
                         <i class="uil uil-message project_icon button_icon"></i>
                     </a>
                 </div>
+                @foreach($abouts as $about)
+                    @if ($about->home_image)
+                        <img src="{{ asset('images/' . $about->home_image) }}" alt="" class="project_img">
+                    @else
+                        <img src="{{ asset('template/assets/img/home.png') }}" alt="" class="project_img">
+                    @endif
+                @endforeach
 
-                <img src="../assets/img/home.png" alt="" class="project_img">
             </div>
         </div>
     </section>
@@ -658,82 +320,30 @@
 
         <div class="testimonial_container container swiper-container">
             <div class="swiper-wrapper">
-                <!--========= TESTIMONIAL 1 ==========-->
-                <div class="testimonial_content swiper-slide">
-                    <div class="testimonial_data">
-                        <div class="testimonial_header">
-                            <img src="../assets/img/testimonial1.jpeg" alt="" class="testimonial_img">
+                @foreach($testimonials as $testimonial)
+                    <div class="testimonial_content swiper-slide">
+                        <div class="testimonial_data">
+                            <div class="testimonial_header">
+                                @if($testimonial->image)
+                                    <img src="{{ asset('images/' . $testimonial->image) }}" alt="" class="testimonial_img">
+                                @else
+                                    <img src="{{ asset('template/assets/img/testimonial1.jpeg') }}" alt="" class="testimonial_img">
+                                @endif
+                                <div>
+                                    <h3 class="testimonial_name">{{ $testimonial->name }}</h3>
+                                    <span class="testimonial_client">{{ $testimonial->function }}</span>
+                                </div>
+                            </div>
 
                             <div>
-                                <h3 class="testimonial_name">Jay Smith</h3>
-                                <span class="testimonial_client">Client</span>
+                               {!! str_repeat('<i class="uil uil-star testimonial_icon-star"></i>', (int) $testimonial->rating) !!}
                             </div>
                         </div>
-
-                        <div>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                        </div>
+                        <p class="testimonial_description">
+                            {{ $testimonial->testimony }}
+                        </p>
                     </div>
-                    <p class="testimonial_description">
-                        I get a good impression,I carry out my project with all the possible
-                        quality and attention and support 24 hours a day.
-                    </p>
-                </div>
-                <!--========= TESTIMONIAL 2 ==========-->
-                <div class="testimonial_content swiper-slide">
-                    <div class="testimonial_data">
-                        <div class="testimonial_header">
-                            <img src="../assets/img/testimonial2.jpg" alt="" class="testimonial_img">
-
-                            <div>
-                                <h3 class="testimonial_name">John Smith</h3>
-                                <span class="testimonial_client">Client</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                        </div>
-                    </div>
-                    <p class="testimonial_description">
-                        I get a good impression,I carry out my project with all the possible
-                        quality and attention and support 24 hours a day.
-                    </p>
-                </div>
-                <!--========= TESTIMONIAL 3 ==========-->
-                <div class="testimonial_content swiper-slide">
-                    <div class="testimonial_data">
-                        <div class="testimonial_header">
-                            <img src="../assets/img/testimonial3.jpeg" alt="" class="testimonial_img">
-
-                            <div>
-                                <h3 class="testimonial_name">Mike Smith</h3>
-                                <span class="testimonial_client">Client</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                            <i class="uil uil-star testimonial_icon-star"></i>
-                        </div>
-                    </div>
-                    <p class="testimonial_description">
-                        I get a good impression,I carry out my project with all the possible
-                        quality and attention and support 24 hours a day.
-                    </p>
-                </div>
-
+                @endforeach
             </div>
             <!--Add Pagination-->
             <div class="swiper-pagination swiper-pagination-testimonial"></div>

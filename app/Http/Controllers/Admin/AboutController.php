@@ -56,9 +56,9 @@ class AboutController extends Controller
             if(file_exists($image)) {
                 unlink($image);
             }
-            $file_name = time() . '.' . $request->cv->getClientOriginalExtension();
-            $request->cv->move(public_path('images'), $file_name);
-            $about->cv = $file_name;
+            $file = time() . '.' . $request->cv->getClientOriginalExtension();
+            $request->cv->move(public_path('images'), $file);
+            $about->cv = $file;
         }
 
         $about->save();

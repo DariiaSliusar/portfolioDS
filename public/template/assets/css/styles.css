@@ -3,7 +3,7 @@
 
 /*==================== VARIABLES CSS ====================*/
 :root {
-    
+
   --header-height: 3rem;
  /*========== Colors ==========*/
  /* Change favorite color */
@@ -149,7 +149,7 @@ font-size: var(--small-font-size);
 margin-bottom: var(--mb-3);
 }
 
-.section__title, 
+.section__title,
 .section__subtitle {
 text-align: center;
 }
@@ -1454,7 +1454,7 @@ body{
  .swiper-container-horizontal > .swiper-pagination-bullets{
    bottom: -4.5rem;
  }
- 
+
 }
 
 

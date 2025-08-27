@@ -1,7 +1,7 @@
 <header class="header" id="header">
     <nav class="nav container">
-        <a href="#home" class="nav_logo">
-            John Doe
+        <a href="{{ route('pages.index') }}" class="nav_logo">
+            Dariia Sliusar
         </a>
 
         <div class="nav_menu" id="nav-menu">
