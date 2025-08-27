@@ -1,15 +1,16 @@
 <footer class="footer">
     <div class="footer_bg">
         <div class="footer_container container grid">
-            <div>
-                <h1 class="footer_title">John Doe</h1>
-                <span class="footer_subtitle">FullStack Web developer</span>
-                <p class="footer_subtitle">
-                    High level experience in web design,
-                    front-end and backend development,
-                    producing quality work
-                </p>
-            </div>
+            @foreach($abouts as $about)
+                <div>
+                    <h1 class="footer_title">{{ $about->name }}</h1>
+                    <span class="footer_subtitle">{{ $about->tagline }}</span>
+                    <p class="footer_subtitle">
+                        {{ $about->summary }}
+                    </p>
+                </div>
+            @endforeach
+
             <ul class="footer_links">
                 <li>
                     <a href="#services" class="footer_link">Services</a>

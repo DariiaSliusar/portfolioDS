@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -82,7 +83,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
+//contact form route
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 
